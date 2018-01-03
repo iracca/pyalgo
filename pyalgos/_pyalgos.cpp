@@ -18,12 +18,16 @@ static char matrixtocsv_docstring[] =
 static char stddev_docstring[] =
     "standard deviation function, which only accepts list or tuple of integers";
 
+static char variance_docstring[] =
+    "variance function, which only accepts list or tuple of integers";
+
 static PyMethodDef module_methods[] = {
     {"countintdict", (PyCFunction)pyalgos_countintdict, METH_VARARGS, countintdict_docstring},
     {"countstrdict", (PyCFunction)pyalgos_countstrdict, METH_VARARGS, countstrdict_docstring},
     {"matrixtocsv", (PyCFunction)pyalgos_buildcsv, METH_VARARGS | METH_KEYWORDS, matrixtocsv_docstring},
     {"counter", (PyCFunction)pyalgos_counter, METH_VARARGS, counter_docstring},
     {"stddev", (PyCFunction)pyalgos_stddev, METH_VARARGS, stddev_docstring},
+    {"variance", (PyCFunction)pyalgos_variance, METH_VARARGS, variance_docstring},
     {NULL, NULL, 0, NULL},
 };
 

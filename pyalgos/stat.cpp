@@ -1,7 +1,7 @@
 #include "_pyalgos.hpp"
 
 
-double _stddev(const std::vector<long>& arr) {
+double _variance(const std::vector<long>& arr) {
     long sum = std::accumulate(arr.begin(), arr.end(), 0);
     double arrsize = static_cast<double>(arr.size());
     double mean = sum / arrsize;
@@ -9,15 +9,17 @@ double _stddev(const std::vector<long>& arr) {
     for (int i = 0; i < arr.size(); ++i) {
         up += std::pow(std::abs(static_cast<double>(arr[i]) - mean), 2);
     }
-    return std::sqrt(up / arrsize);
+    return up / arrsize;
 }
 
 
-PyObject * pyalgos_stddev(PyObject * self, PyObject * args) {
+std::vector<long> getVectorFromIntList(PyObject * self, PyObject * args) {
     std::vector<long> arr;
     PyObject * arr_obj;
 
-    if (!PyArg_ParseTuple(args, "O", &arr_obj)) return NULL;
+    if (!PyArg_ParseTuple(args, "O", &arr_obj)) {
+        throw std::logic_error("couldn't parse the function argument");
+    }
 
     if (PyTuple_Check(arr_obj)) {
         for (Py_ssize_t i = 0; i < PyTuple_Size(arr_obj); ++i) {
@@ -30,11 +32,25 @@ PyObject * pyalgos_stddev(PyObject * self, PyObject * args) {
             arr.push_back(PyLong_AsLong(value));
         }
     }
+    return arr;
+}
 
-    double stdv = _stddev(arr);
+
+PyObject * pyalgos_variance(PyObject * self, PyObject * args) {
+    double vari = _variance(getVectorFromIntList(self, args));
+
+    PyObject * ret;
+    ret = PyFloat_FromDouble(vari);
+    return ret;
+}
+
+
+PyObject * pyalgos_stddev(PyObject * self, PyObject * args) {
+    double stdv = std::sqrt(_variance(getVectorFromIntList(self, args)));
 
     PyObject * ret;
     ret = PyFloat_FromDouble(stdv);
     return ret;
 }
+
 
