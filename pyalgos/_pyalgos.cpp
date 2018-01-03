@@ -3,8 +3,11 @@
 static char module_docstring[] =
     "module to speed up common task for my job";
 
-static char countdict_docstring[] =
+static char countintdict_docstring[] =
     "int dict count function";
+
+static char countstrdict_docstring[] =
+    "str dict count function";
 
 static char counter_docstring[] =
     "counter for generic hashable object";
@@ -13,7 +16,8 @@ static char matrixtocsv_docstring[] =
     "matrix to csv string";
 
 static PyMethodDef module_methods[] = {
-    {"countDict", (PyCFunction)pyalgos_countDict, METH_VARARGS, countdict_docstring},
+    {"countintdict", (PyCFunction)pyalgos_countintdict, METH_VARARGS, countintdict_docstring},
+    {"countstrdict", (PyCFunction)pyalgos_countstrdict, METH_VARARGS, countstrdict_docstring},
     {"matrixtocsv", (PyCFunction)pyalgos_buildcsv, METH_VARARGS | METH_KEYWORDS, matrixtocsv_docstring},
     {"counter", (PyCFunction)pyalgos_counter, METH_VARARGS, counter_docstring},
     {NULL, NULL, 0, NULL},

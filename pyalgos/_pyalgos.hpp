@@ -12,7 +12,9 @@ void _append_header(const std::string& csv, PyObject * header, char * quotechar,
 
 PyObject * pyalgos_buildcsv(PyObject * self, PyObject * args, PyObject * kw);
 
-PyObject* pyalgos_countDict(PyObject* self, PyObject* args);
+PyObject * pyalgos_countintdict(PyObject* self, PyObject* args);
+
+PyObject * pyalgos_countstrdict(PyObject * self, PyObject * args);
 
 PyObject * pyalgos_counter(PyObject* self, PyObject * args);
 
