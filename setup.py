@@ -51,7 +51,7 @@ class PerformanceCommand(distutils.cmd.Command):
 
 setup(
     name="pyalgos",
-    version="0.0.8",
+    version="0.0.9",
     description="c++ implementation of common operation in my day job",
     author="Shun Endo",
     author_email="shnend@gmail.com",
