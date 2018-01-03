@@ -4,6 +4,10 @@ try:
 except ImportError:
     from distutils.core import setup, Extension
 
+import distutils.cmd
+import distutils.log
+import subprocess
+
 
 include_dirs = [
     "usr/local/include",
@@ -23,6 +27,27 @@ ext = Extension(
     extra_compile_args=["-std=c++11", "-stdlib=libstdc++", "-Wall", "-Wextra"],
 )
 
+
+class PerformanceCommand(distutils.cmd.Command):
+    """
+    Custom command class to run the performance.py from setup.py
+    """
+    description = 'run performance.py and print result'
+    user_options = []
+
+    def initialize_options(self):
+        pass
+    
+    def finalize_options(self):
+        pass
+
+    def run(self):
+        command = ['python', 'performance.py']
+        self.announce('Running command: {}'.format(str(command)),
+                     level=distutils.log.INFO)
+        subprocess.check_call(command)
+
+
 setup(
     name="pyalgos",
     version="0.0.6",
@@ -33,4 +58,7 @@ setup(
     include_dirs=include_dirs,
     setup_requires=['pytest-runner'],
     tests_require=['pytest', 'pytest-cov', 'mock'],
+    cmdclass={
+        'performance': PerformanceCommand,
+    }
 )
