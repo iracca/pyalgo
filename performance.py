@@ -1,6 +1,7 @@
 import pyalgos
 from collections import Counter
 import random
+import math
 
 
 def generate_list():
@@ -42,8 +43,8 @@ def test_ordinary_method(lis):
     return dic
 
 
-def test_countDict_cpp(lis):
-    return pyalgos.countDict(lis)
+def test_countintdict_cpp(lis):
+    return pyalgos.countintdict(lis)
 
 
 def test_counter_cpp(lis):
@@ -54,12 +55,31 @@ def test_Counter(lis):
     return Counter(lis)
 
 
+def __py_stddev(lis):
+    _sum = sum(lis)
+    size = float(len(lis))
+    mean = _sum / size
+    variance = sum(math.pow(abs(i - mean),  2) for i in lis) / size
+    return math.sqrt(variance)
+
+
+def test_stddev_function(lis):
+    return __py_stddev(lis)
+
+
+def test_stddev_cpp(lis):
+    return pyalgos.stddev(lis)
+
+
 if __name__ == "__main__":
     import timeit
     # print "test_default_dict:\t", timeit.timeit("test_default_dict(lis)", setup="from __main__ import generate_list, test_default_dict; lis = generate_list()", number=1000)
     # print "test_ordinary_method:\t", timeit.timeit("test_ordinary_method(lis)", setup="from __main__ import generate_list, test_ordinary_method; lis = generate_list()", number=1000)
-    print "test_countDict_cpp:\t", timeit.timeit("test_countDict_cpp(lis)", setup="from __main__ import generate_list, test_countDict_cpp; lis = generate_list()", number=1000)
+    print "test_countintdict_cpp:\t", timeit.timeit("test_countintdict_cpp(lis)", setup="from __main__ import generate_list, test_countintdict_cpp; lis = generate_list()", number=1000)
     # print "test_counter_cpp:\t", timeit.timeit("test_counter_cpp(lis)", setup="from __main__ import generate_list, test_counter_cpp; lis = generate_list()", number=1000)
     # print "test_Counter:\t", timeit.timeit("test_Counter(lis)", setup="from __main__ import generate_list, test_Counter; lis = generate_list()", number=1000)
-    print "test_default_methods_to_csv:\t", timeit.timeit("test_default_methods_to_csv(matrix, header)", setup="from __main__ import generate_matrix, generate_header, test_default_methods_to_csv; matrix = generate_matrix(); header=generate_header()", number=100)
-    print "test_matrixtocsv_cpp:\t", timeit.timeit("test_matrixtocsv_cpp(matrix, header)", setup="from __main__ import generate_matrix, generate_header, test_matrixtocsv_cpp; matrix = generate_matrix(); header=generate_header()", number=100)
+    # print "test_default_methods_to_csv:\t", timeit.timeit("test_default_methods_to_csv(matrix, header)", setup="from __main__ import generate_matrix, generate_header, test_default_methods_to_csv; matrix = generate_matrix(); header=generate_header()", number=100)
+    # print "test_matrixtocsv_cpp:\t", timeit.timeit("test_matrixtocsv_cpp(matrix, header)", setup="from __main__ import generate_matrix, generate_header, test_matrixtocsv_cpp; matrix = generate_matrix(); header=generate_header()", number=100)
+    print "test_stddev_function:\t", timeit.timeit("test_stddev_function(lis)", setup="from __main__ import generate_list, test_stddev_function; lis = generate_list()", number=1000)
+    print "test_stddev_cpp:\t", timeit.timeit("test_stddev_cpp(lis)", setup="from __main__ import generate_list, test_stddev_cpp; lis = generate_list()", number=1000)
+
