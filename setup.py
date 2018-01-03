@@ -23,6 +23,7 @@ ext = Extension(
         "pyalgos/_pyalgos.cpp", 
         "pyalgos/countDict.cpp", 
         "pyalgos/matrixtocsv.cpp",
+        "pyalgos/stat.cpp",
     ],
     extra_compile_args=["-std=c++11", "-stdlib=libstdc++", "-Wall", "-Wextra"],
 )
@@ -50,7 +51,7 @@ class PerformanceCommand(distutils.cmd.Command):
 
 setup(
     name="pyalgos",
-    version="0.0.7",
+    version="0.0.8",
     description="c++ implementation of common operation in my day job",
     author="Shun Endo",
     author_email="shnend@gmail.com",
