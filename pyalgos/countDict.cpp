@@ -15,20 +15,6 @@ std::unordered_map<T, int> countdict(const std::vector<T>& arr) {
 }
 
 
-// std::unordered_map<int, int> countDict(const std::vector<int>& arr) {
-//     std::unordered_map<int, int> dic;
-//     for (std::vector<int>::const_iterator itr = arr.begin(); itr != arr.end(); ++itr) {
-//         std::unordered_map<int, int>::iterator dicitr = dic.find(*itr);
-//         if (dicitr == dic.end()) {
-//             dic[*itr] = 1;
-//         } else {
-//             dicitr->second++;
-//         }
-//     }
-//     return dic;
-// }
-
-
 PyObject* pyalgos_countintdict(PyObject* self, PyObject* args) {
     std::vector<int> arr;
     PyObject *arr_obj;
